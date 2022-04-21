@@ -7,7 +7,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { TwitterPicker } from 'react-color';
 import { useState } from 'react';
 
-export default function ModificationDossier({ ouvertForm, setOuvertForm, gererModifierDossier, titre : Titre, couleur : Couleur, id, couverture : Couverture}) {
+export default function ModificationDossier({modifierDossier, ouvertForm, setOuvertForm, titre : Titre, couleur : Couleur, id, couverture : Couverture}) {
     const [titre, setTitre] = useState(Titre);
     const [couverture, setCouverture] = useState(Couverture);
     const [couleur, setCouleur] = useState(Couleur);
@@ -20,19 +20,18 @@ export default function ModificationDossier({ ouvertForm, setOuvertForm, gererMo
         // Il faut réinitialiser les états des valeurs de formulaire car sinon 
         // les dernières valeurs saisies seront sauvegardées dans les 'états'
         // du composant
-        setTitre(Titre);
-        setCouverture(Couverture);
-        setCouleur(Couleur)
+
         setOuvertForm(false);
     };
 
-		function gererSoumettre() {
-			// Code qui gère l'ajout dans Firestore
-            if(titre.search(/[a-z]{2,}/i) != -1) {
-                gererModifierDossier(titre, couverture, couleur);
-                gererFermer();
-            }
-		}
+    function gererSoumettre() {
+        // Code qui gère l'ajout dans Firestore
+        if(titre.search(/[a-z]{2,}/i) != -1) {
+
+            modifierDossier(id, titre, couverture, couleur);
+            gererFermer();
+        }
+    }
 
     return (
         <div>

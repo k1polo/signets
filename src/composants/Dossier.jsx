@@ -7,10 +7,9 @@ import MenuItem from '@mui/material/MenuItem';
 import couvertureDefaut from '../images/couverture-defaut.webp';
 import { formaterDate } from '../code/helper';
 import { useState } from 'react';
-import * as dossierModele from '../code/dossier-modele';
 import ModificationDossier from './ModificationDossier';
 
-export default function Dossier({id, titre, couleur, dateModif, couverture, supprimerDossier}) {
+export default function Dossier({ id, titre, couleur, dateModif, couverture, supprimerDossier, modifierDossier}) {
   //État du menu contextuel
   const [eltAncrage, setEltAncrage] = useState(null);
   const ouvertMenu = Boolean(eltAncrage);
@@ -33,8 +32,9 @@ export default function Dossier({id, titre, couleur, dateModif, couverture, supp
     setOuvertForm(true);
     // ... puis fermer le menu.
     gererFermerMenu();
+
   }
-  
+
   function gererSupprimer() {
     // Appeler la fonction de ListeDossiers qui gère la suppression dans Firestore
     supprimerDossier(id);
@@ -85,7 +85,7 @@ export default function Dossier({id, titre, couleur, dateModif, couverture, supp
         <MenuItem onClick={gererFormulaireModifier}>Modifier</MenuItem>
         <MenuItem onClick={gererSupprimer}>Supprimer</MenuItem>
       </Menu>
-      <ModificationDossier id={id} titre={titre} couleur={couleur} couverture={couverture} ouvertForm={ouvertForm} setOuvertForm={setOuvertForm}/>
+      <ModificationDossier modifierDossier={modifierDossier} id={id} titre={titre} couleur={couleur} couverture={couverture} ouvertForm={ouvertForm} setOuvertForm={setOuvertForm} gererFormulaireModifier={gererFormulaireModifier}/>
     </article>
   );
 }

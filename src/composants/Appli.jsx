@@ -43,6 +43,7 @@ export default function Appli() {
       doc => setDossiers([{id: doc.id, ...doc.data()}, ...dossiers])
     );
   }
+  
 
   // Surveiller l'état de la connexion Firebase Auth
   useEffect(() => observerEtatConnexion(setUtilisateur),[]);

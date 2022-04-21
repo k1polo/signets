@@ -17,6 +17,15 @@
 # production
 /build
 
+# Firebase
+/src/services/config-secret.js
+/.firebase
+.firebaserc
+firebase.json
+firestore.indexes.json
+firestore.rules
+storage.rules
+
 # misc
 .DS_Store
 .env.local
